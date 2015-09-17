@@ -1,4 +1,7 @@
-﻿namespace Bottles
+﻿using System;
+using System.Collections.Generic;
+
+namespace Bottles
 {
     public class Bottle
     {
@@ -15,12 +18,12 @@
 		    Volume = 0;
 	    }
 
-	    public void PourFrom(Bottle b)
+	    public void PourInto(Bottle b)
 	    {
-		    Volume = (Volume + b.Volume);
-		    if (Volume > Capacity)
-			    Volume = Capacity;
-			b.Volume = Volume % Capacity;
+			b.Volume = (b.Volume + Volume);
+			if (b.Volume > b.Capacity)
+				b.Volume = b.Capacity;
+			Volume = b.Volume % b.Capacity;
 			
 	    }
 	}
@@ -32,6 +35,20 @@
 			var bottleA = new Bottle {Capacity = capacityBottleA};
 			var bottleB = new Bottle {Capacity = capacityBottleB};
 
+			var solution = string.Empty;
+
+			return string.Empty;
+		}
+
+		private string Solve(string path, int depth, int limit, Bottle bottleA, Bottle bottleB, int desiredVolume)
+		{
+			if (bottleA.Volume == desiredVolume) return " A;";
+			if (bottleB.Volume == desiredVolume) return " B;";
+			if (depth > limit) return string.Empty;
+			var actions = new Dictionary<string, Action>
+			{
+				//{"a -> b" : () => bottleB.},
+			};
 
 			return string.Empty;
 		}
