@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Bottles;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
@@ -57,14 +58,22 @@ namespace BottlesTest
 		}
 
 		[Test]
-		[Ignore]
-		public void Solve_3And5LitreContainers4LitreDesired_ReturnsCorrectPaths()
+		public void Solve_3And5LitreContainers1LitreDesired_ReturnsCorrectPaths()
 		{
 			var solution = BottleSolver.Solve(5, 3, 1);
-
 			Assert.NotNull(solution);
-			Assert.True(solution.Count > 0);
+			Assert.That(solution.Single(), Is.EqualTo("F(B), B -> A, F(B), B -> A, B ;"));
 		}
+
+		[Test]
+		public void Solve_3And5LitreContainers4LitreDesired_ReturnsCorrectPaths()
+		{
+			var solution = BottleSolver.Solve(5, 3, 4);
+			Assert.NotNull(solution);
+			Assert.That(solution.Single(), Is.EqualTo("F(A), A -> B, E(B), A -> B, F(A), A -> B, A ;"));
+		}
+
+
 	}
 
 
