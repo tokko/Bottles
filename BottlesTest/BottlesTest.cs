@@ -45,6 +45,18 @@ namespace BottlesTest
 		}
 
 		[Test]
+		public void PourFrom_SmallToLargeOverflow_VolumeIsCorrect()
+		{
+			var bottleA = new Bottle {Capacity = 5, Volume = 3};
+			var bottleB = new Bottle {Capacity = 3, Volume = 3};
+
+			bottleB.PourInto(bottleA);
+
+			Assert.That(bottleA.Volume, Is.EqualTo(5));
+			Assert.That(bottleB.Volume, Is.EqualTo(1));
+		}
+
+		[Test]
 		[Ignore]
 		public void Solve_3And5LitreContainers4LitreDesired_ReturnsCorrectPaths()
 		{
